@@ -3,7 +3,7 @@ Hello!
 #OVERVIEW_OF_LYRICAL
 
 
-<img src="https://media.giphy.com/media/XXRdI4ktwXRuAJHyal/giphy.gif" width="560" height="315" />
+<img src="https://i.imgur.com/NMkzZy5.gif" width="560" height="315" />
 
 In this project, I created a react app with express backend.I used an api called GENIUS API to get all music data and used its website to scrape the lyrics using cheerio.This is clearly an non-profit web app for education purpose only.In order to run the project download it and open with any code editor(my preference is Visual Studio)
 Then run the below command in sequence.
