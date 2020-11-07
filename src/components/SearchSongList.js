@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {searchSong} from '../Actions/songActions'
 import SongCard from './shared/SongCard/SongCard';
-import { Grid } from '@material-ui/core'; 
+import { Grid,Container } from '@material-ui/core'; 
 import TextEffect from './shared/TextEffect/TextEffect';
 import Loading from './shared/Loading/Loading';
 
@@ -35,21 +35,22 @@ export class SearchSongList extends Component {
     const { searchSong } = this.props.store;
 
         return (
-            
             <Grid container spacing={4}>
                 <Grid item xs={12}>
                     <TextEffect text={this.props.match.params.searchItem}/>
                 </Grid>
-                
                 {this.checkIsLoading()}
-                
-                {
-                    Object.keys(searchSong).map((item, i) => (
-                    <Grid item xs={12} lg={4} md={6} >
-                        <SongCard item={searchSong[item].result}/>
+                <Container>
+                    <Grid container spacing={4} style={{display:"flex",justifyContent:"center"}}>
+                    {
+                        Object.keys(searchSong).map((item, i) => (
+                        <Grid item xs={10} lg={4} md={6} >
+                            <SongCard item={searchSong[item].result}/>
+                        </Grid>
+                        ))
+                    }
                     </Grid>
-                    ))
-                }
+                </Container>
             </Grid>
         )
     }
