@@ -52,15 +52,15 @@ export class Lyrics extends Component {
                 song.media.map((items)=>{   
                     if(items.provider==="soundcloud"){ 
                         return(
-                            <Paper >
-                                <ReactPlayer url={items.url} height="auto"/>
+                            <Paper style={{width:"100%"}} >
+                                <ReactPlayer width="100%" url={items.url} height="auto"/>
                             </Paper>
                         )
                     }
                     if(items.provider==="youtube"){ 
                         const arr=items.url.split("=");
                         return(
-                            <Paper >
+                            <Paper style={{width:"100%"}} >
                                 <iframe width="100%" title="youtube" height="315" src={"https://www.youtube.com/embed/"+arr[1]}/>
                             </Paper>
                         )
@@ -75,35 +75,32 @@ export class Lyrics extends Component {
     const {musicData} = this.props.location.state
 
     return (
-            <div>
-                <Grid >
+            <Grid container>
+                <Grid item xs={12}>
                     <TextEffect text={musicData.title}/>
                 </Grid>
-                    {this.checkIsLoading()}
-                    <Grid container spacing={2} justify="space-around" >
-
-                        <Grid item xs={12} sm={8} >
-                            <Container  >
-                                    <Paper style={{paddingLeft:"20px",paddinRight:"auto"}}  >
-                                            {this.showLyrics(lyrics)}
-                                    </Paper> 
-                            </Container>         
-                        </Grid>   
-                        <Grid item xs={12} sm={4}>
-                            <Paper style={{paddingLeft:"20px",textAlign:"center"}}>
-                                <ul>
-                                    <li key="image"> <img alt="song" src={musicData.song_art_image_thumbnail_url} height="200px" width="80%" style={{objectFit:"cover"}}/></li>
-                                    <li key="title"> {musicData.full_title}</li>
-                                    <li key="singer name"> Singer Name : {musicData.primary_artist.name}</li>
-                                    <li key="singer"> Singer Name : {musicData.primary_artist.name}</li>
-                                </ul>
-                            </Paper>  
-                                {
-                                    this.showMedia(song)
-                                }
-                        </Grid>   
-                    </Grid>
-            </div>
+                {this.checkIsLoading()}
+                <Grid container spacing={2} justify="space-around" >
+                    <Grid item xs={12} sm={8} >
+                        <Container>
+                                <Paper style={{paddingLeft:"20px",paddinRight:"auto"}}  >
+                                        {this.showLyrics(lyrics)}
+                                </Paper> 
+                        </Container>         
+                    </Grid>   
+                    <Grid item xs={12} sm={4}>
+                        <Paper style={{paddingLeft:"20px",textAlign:"center"}}>
+                            <ul>
+                                <li key="image"> <img alt="song" src={musicData.song_art_image_thumbnail_url} height="200px" width="80%" style={{objectFit:"cover"}}/></li>
+                                <li key="title"> {musicData.full_title}</li>
+                                <li key="singer name"> Singer Name : {musicData.primary_artist.name}</li>
+                                <li key="singer"> Singer Name : {musicData.primary_artist.name}</li>
+                            </ul>
+                        </Paper>  
+                            {this.showMedia(song)}
+                    </Grid>   
+                </Grid>
+           </Grid>
         )
     }
 }
