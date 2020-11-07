@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {searchArtist} from '../Actions/songActions'
-import { Grid } from '@material-ui/core'; 
+import { Container, Grid } from '@material-ui/core'; 
 import SongCard from './shared/SongCard/SongCard';
 import Loading from './shared/Loading/Loading';
 
@@ -38,7 +38,7 @@ export class Artist extends Component {
             return (
                 Object.keys(artistSongs).map((item, i) => (
                  ( 
-                    <Grid  item xs={12} lg={4} md={6} >
+                    <Grid  item xs={12}  md={6} lg={4} >
                         <SongCard item={artistSongs[item]}/>
                     </Grid>
                 )             
@@ -52,10 +52,10 @@ export class Artist extends Component {
         if (artist) {
             return(
                 <Grid xs={12} >
-                <img src={artist.header_image_url} alt="header" width="100%" height="350px" style={{objectFit:"cover"}} />
-                <img src={artist.image_url} alt="artist" height="180px" width="180px" style={{ marginTop:"-100px",borderRadius:"50%",border: "3px solid white", display: "block", marginLeft: "auto", marginRight: "auto" }} />      
-                <h3 style={{color: "#212121",fontSize: "35px",marginTop: "15px",textAlign:"center"}}>{artist.name}</h3>
-                
+                    <img src={artist.header_image_url} alt="header" width="100%" height="350px" style={{objectFit:"cover"}} />
+                    <img src={artist.image_url} alt="artist" height="180px" width="180px" style={{ marginTop:"-100px",borderRadius:"50%",border: "3px solid white", display: "block", marginLeft: "auto", marginRight: "auto" }} />      
+                    <h3 style={{color: "#212121",fontSize: "35px",marginTop: "15px",textAlign:"center"}}>{artist.name}</h3>
+                    
                 </Grid>
             )
             
@@ -71,7 +71,11 @@ export class Artist extends Component {
                     <Grid container>
                         {this.checkIsLoading()}
                         {this.renderArtistDetail(artist)}
-                        {this.renderSongs(artistSongs)}
+                        <Container maxWidth="lg">
+                        <Grid container spacing={4}>
+                            {this.renderSongs(artistSongs)}
+                        </Grid>
+                        </Container>
                     </Grid>
             </div>
         )
